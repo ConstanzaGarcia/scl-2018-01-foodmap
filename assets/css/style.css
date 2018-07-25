@@ -1,8 +1,29 @@
 /* font-family: 'Open Sans', sans-serif */
 
-body {
-    font-family: 'Open Sans', sans-serif; 
+#mapa {
+    font-family: 'Open Sans', sans-serif;
     background-color: black;
     color: orange;
     text-align: center;
+    padding: 23%;
+}
+
+#mapaPantallaUno {
+    font-family: 'Open Sans', sans-serif;
+    background-color: black;
+    color: orange;
+    text-align: center;
+    /* display: none;*/
+}
+
+/* Mapa */
+
+#map {
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
