@@ -2,6 +2,8 @@ var map;
 var service;
 var infowindow;
 
+// Marcamos un lugar en el mapa
+
 function initMap() {
     // The location of city
     var city = { lat: -33.4569, lng: -70.648 };
@@ -12,6 +14,8 @@ function initMap() {
     var marker = new google.maps.Marker({ position: city, map: map });
 }
 
+
+//Localiza nuestra posición
 var map, infoWindow;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -50,6 +54,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
+// busca lo que queremos 
 
 function initialize() {
   var pyrmont = new google.maps.LatLng(-33.4569,-70.648);
