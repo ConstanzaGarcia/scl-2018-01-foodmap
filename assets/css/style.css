@@ -1,5 +1,9 @@
 /* font-family: 'Open Sans', sans-serif */
 
+body {
+    background-color: black;
+}
+
 #iniciando {
     font-family: 'Open Sans', sans-serif;
     background-color: black;
@@ -19,5 +23,5 @@
 /* Mapa */
 
 #map {
-    height: 100%;
+    width: 100%;
 }
