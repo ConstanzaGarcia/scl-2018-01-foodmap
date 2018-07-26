@@ -1,8 +1,15 @@
+// Cargando pantalla 
+
+setTimeout(function hide() { $('#iniciando').hide('fast');
+document.getElementById('mapaPantallaUno').style.display = 'block'; }, 3000);
+
+
+// Marcamos un lugar en el mapa
+
+
 var map;
 var service;
 var infowindow;
-
-// Marcamos un lugar en el mapa
 
 function initMap() {
     // The location of city
@@ -81,3 +88,4 @@ function callback(results, status) {
     }
   }
 }
+
