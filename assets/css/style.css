@@ -1,21 +1,67 @@
 /* font-family: 'Open Sans', sans-serif */
 
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #009933;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+    align-items: center;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 body {
-    background-color: black;
+    background-image: url(img/preparar-Enchilada-1440x810.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 10%;
+}
+
+#cargando {
+    text-align: center;
+    align-items: center;
 }
 
 #iniciando {
     font-family: 'Open Sans', sans-serif;
-    background-color: black;
-    color: orange;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-position: center;
+    color: white;
     text-align: center;
     padding: 23%;
+    border-radius: 7px;
+    padding: 5%;
+    align-items: center;
 }
 
 #mapaPantallaUno {
     font-family: 'Open Sans', sans-serif;
-    background-color: black;
-    color: orange;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     text-align: center;
     display: none;
 }
@@ -25,5 +71,3 @@ body {
 #map {
     width: 100%;
 }
-
-
