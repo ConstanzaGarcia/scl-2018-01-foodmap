@@ -1,15 +1,15 @@
 // Cargando pantalla 
-setTimeout(const hide() {
+
+setTimeout(function hide() {
     $('#iniciando').hide('fast');
     document.getElementById('mapaPantallaUno').style.display = 'block';
 }, 3000);
-
 // Funciones del mapa
 
 // variables que vamos a trabajar 
 
 
-let initMap;
+let map;
 let service;
 let infowindow;
 
@@ -19,42 +19,40 @@ let infowindow;
 const initMap = () => {
     //localizando Santiago
     const city = { lat: -33.4569, lng: -70.648 };
-    let map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 15, center: city });
-
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -33.4569, lng: -70.648 },
+        center: santiago,
         zoom: 15
     });
 
+    // let map = new google.maps.Map(
+    //     document.getElementById('map'), { zoom: 15, center: city });
     infoWindow = new google.maps.InfoWindow();
 
     let service = new google.maps.places.PlacesService(map);
-    service.textSearch(request, callback);
-
-    let request = {
+    service.textSearch ({
         location: santiago,
         radius: '500',
         type: ['restaurant'],
-        query: inputSearch
-    };
+        query: inputSearch,
+    }, callback);
+};
 
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+service = new google.maps.places.PlacesService(map);
+service.textSearch(request, callback);
 
 
 
-    const callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            for (let i = 0; i < results.length; i++) {
-                let place = results[i];
-                createMarker(results[i]);
+const callback = (results, status) => {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+            let place = results[i];
+            createMarker(results[i]);
 
-            }
         }
-
     }
+
 }
+
 
 // // The marker, positioned at city
 // let marker = new google.maps.Marker({ position: city, map: map });
