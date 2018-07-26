@@ -29,30 +29,27 @@ const initMap = () => {
     infoWindow = new google.maps.InfoWindow();
 
     let service = new google.maps.places.PlacesService(map);
-    service.textSearch ({
+    service.textSearch({
         location: santiago,
         radius: '500',
         type: ['restaurant'],
         query: inputSearch,
     }, callback);
-};
-
-service = new google.maps.places.PlacesService(map);
-service.textSearch(request, callback);
 
 
 
-const callback = (results, status) => {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (let i = 0; i < results.length; i++) {
-            let place = results[i];
-            createMarker(results[i]);
+    const callback = (results, status) => {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (let i = 0; i < results.length; i++) {
+                let place = results[i];
+                createMarker(results[i]);
 
+            }
         }
+
     }
 
-}
-
+};
 
 // // The marker, positioned at city
 // let marker = new google.maps.Marker({ position: city, map: map });
