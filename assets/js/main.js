@@ -52,7 +52,7 @@ function initMap() {
         var request = {
             location: myLatlng,
             radius: '500',
-            type: ['restaurant'],
+            type: ['food'],
             key: 'AIzaSyBQearEk9C4QkT-lWKttFnXZgeonntEqaQ',
         };
 
@@ -81,13 +81,12 @@ function initMap() {
 }
 
 function createMarker(place) {
-    var image = 'https://github.com/ConstanzaGarcia/scl-2018-01-foodmap/blob/master/assets/css/img/iconoboca.png';
     var marker = new google.maps.Marker({
         map: map,
         draggable: true,
-        icon:image,
         animation: google.maps.Animation.DROP,
         position: place.geometry.location, // responde a la busqueda de lugares 
+        // icon: '../img/utensils.png',
     });
     marker.addListener('click', toggleBounce);
 
@@ -101,10 +100,10 @@ function createMarker(place) {
     }
     // marker.setMap(map);
 
-    // google.maps.event.addListener(marker, 'click', function () {
-    //     infowindow.setContent(this.content);
-    //     infowindow.open(map, this);
-    // });
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(this.content);
+        infowindow.open(map, this);
+    });
 }
 
 
