@@ -27,71 +27,59 @@ let infowindow;
 
 
 function initMap() {
+    // Buscami posición
+    navigator.geolocation.getCurrentPosition(function (position) {
 
-    // Ubicando mapa
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -33.4569, lng: -70.648 },
-        zoom: 15
-    });
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
 
-    infoWindow = new google.maps.InfoWindow;
-
-    // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+        var myLatlng = new google.maps.LatLng(lat, lng);
+        var mapPlace = {
+            center: myLatlng,
+            zoom: 17,
+            mapTypeId: google.maps.MapTypeId.roadmap
 
 
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-    }
+        };
 
-    //Ubicación especifica
+        map = new google.maps.Map(document.getElementById('map'), mapPlace)
+        // // Ubicando - iniciando mapa
+        // map = new google.maps.Map(document.getElementById('map'), {
+        //     center: { lat: -33.4569, lng: -70.648 },
+        //     zoom: 15
 
-    var request = {
-        location: { lat: -33.4569, lng: -70.648 },
-        radius: '500',
-        type: ['restaurant'],
-        key: 'AIzaSyBQearEk9C4QkT-lWKttFnXZgeonntEqaQ',
-    };
+        // })
 
-    //crear service
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+        infoWindow = new google.maps.InfoWindow;
+
+        var request = {
+            location: myLatlng,
+            radius: '500',
+            type: ['restaurant'],
+            key: 'AIzaSyBQearEk9C4QkT-lWKttFnXZgeonntEqaQ',
+        };
+
+        //crear service
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
 
 
-    function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                createMarker(results[i]);
+        function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    var place = results[i];
+                    createMarker(results[i]);
 
+
+                }
 
             }
 
-        }
+        };
 
-    };
 
+
+    })
 
 }
 
@@ -100,7 +88,7 @@ function createMarker(place) {
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
-        position: { lat: -33.4569, lng: -70.648 },
+        position: place.geometry.location,
     });
     marker.addListener('click', toggleBounce);
 
@@ -114,10 +102,10 @@ function createMarker(place) {
     }
     // marker.setMap(map);
 
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(this.content);
-        infowindow.open(map, this);
-    });
+    // google.maps.event.addListener(marker, 'click', function () {
+    //     infowindow.setContent(this.content);
+    //     infowindow.open(map, this);
+    // });
 }
 
 
