@@ -25,9 +25,8 @@ let infowindow;
 
 //Iniciando Mapa
 
-
 function initMap() {
-    // Buscami posición
+    // Buscami posición con el GP
     navigator.geolocation.getCurrentPosition(function (position) {
 
         lat = position.coords.latitude;
@@ -37,9 +36,7 @@ function initMap() {
         var mapPlace = {
             center: myLatlng,
             zoom: 17,
-            mapTypeId: google.maps.MapTypeId.roadmap
-
-
+            mapTypeId: google.maps.MapTypeId.roadmap //roadmap: muestra la vista predeterminada del mapa de carreteras. Este es el tipo de mapa predeterminado.
         };
 
         map = new google.maps.Map(document.getElementById('map'), mapPlace)
@@ -84,11 +81,12 @@ function initMap() {
 }
 
 function createMarker(place) {
+    // var image = URL {;
     var marker = new google.maps.Marker({
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
-        position: place.geometry.location,
+        position: place.geometry.location, // responde a la busqueda de lugares 
     });
     marker.addListener('click', toggleBounce);
 
