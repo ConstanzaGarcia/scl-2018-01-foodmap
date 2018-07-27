@@ -81,10 +81,11 @@ function initMap() {
 }
 
 function createMarker(place) {
-    // var image = URL {;
+    var image = 'https://github.com/ConstanzaGarcia/scl-2018-01-foodmap/blob/master/assets/css/img/iconoboca.png';
     var marker = new google.maps.Marker({
         map: map,
         draggable: true,
+        icon:image,
         animation: google.maps.Animation.DROP,
         position: place.geometry.location, // responde a la busqueda de lugares 
     });
